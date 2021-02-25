@@ -5,6 +5,7 @@
 require 'pp'
 # Project internal
 require 'pass_station'
+require 'pass_station/output'
 # External
 require 'docopt'
 require 'paint'
@@ -13,19 +14,30 @@ doc = <<~DOCOPT
   Pass Station
 
   Usage:
+    pass-station list [--sort <col>] [--json | --csv | --yaml | --table | --pretty-table] [--no-color]
     pass-station update ([--force] <path> | --check)
     pass-station -h | --help
     pass-station --version
 
-  Update options: Update the password database
+  List options: list all default credentials
+    -s <col>, --sort <col>  Sort by column: productvendor (default) | username | password
+
+  Output options: can be used with list and search commands
+    -j, --json            Display output in JSON
+    -c, --csv             Display output in CSV
+    -y, --yaml            Display output in YAML
+    -t, --table           (Default) Display output in simple columns, easy to use with awk, cut, grep
+    -tp, --pretty-table   Display output in ASCII table
+
+  Update options: update the password database
     -f, --force   Bypass hash checking
     -c, --check   Check for possible update
 
   Other options:
-    --no-color    Disable colorized output
-    --debug       Display arguments
-    -h, --help    Show this screen
-    --version     Show version
+    --no-color  Disable colorized output
+    --debug     Display arguments
+    -h, --help  Show this screen
+    --version   Show version
 DOCOPT
 
 begin
@@ -35,20 +47,27 @@ begin
   if args['update']
     if args['<path>']
       opts = {}
-      opts[:sha256] = args['--force'] ? nil : PassStation::UPSTREAM_DATABASE[:HASH]
+      opts[:sha256] = args['--force'] ? nil : PassStation::DB::UPSTREAM_DATABASE[:HASH]
       puts '[+] Updating database'
-      path = PassStation.download_upstream(args['<path>'], opts)
+      path = PassStation::DB.download_upstream(args['<path>'], opts)
       if path
         puts "[+] Database updated #{path}"
       else
         puts '[+] Database already up to date'
       end
     elsif args['--check']
-      if PassStation.check_for_update
+      if PassStation::DB.check_for_update
         puts '[+] Update available'
       else
         puts '[+] No update available'
       end
+    end
+  elsif args['list']
+    ps = PassStation::DB.new
+    ps.parse.each do |row|
+      print Paint["#{row[:productvendor]} ", :red]
+      print Paint["#{row[:username]} ", :blue]
+      print Paint["#{row[:password]}\n", :green]
     end
   end
 rescue Docopt::Exit => e
