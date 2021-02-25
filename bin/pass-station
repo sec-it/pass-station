@@ -13,12 +13,13 @@ doc = <<~DOCOPT
   Pass Station
 
   Usage:
-    pass-station update [--force] <path>
+    pass-station update ([--force] <path> | --check)
     pass-station -h | --help
     pass-station --version
 
   Update options: Update the password database
     -f, --force   Bypass hash checking
+    -c, --check   Check for possible update
 
   Other options:
     --no-color    Disable colorized output
@@ -32,14 +33,22 @@ begin
   Paint.mode = 0 if args['--no-color']
   pp args if args['--debug']
   if args['update']
-    opts = {}
-    opts[:sha256] = args['--force'] ? nil : PassStation::UPSTREAM_DATABASE[:HASH]
-    puts '[+] Updating database'
-    path = PassStation.download_upstream(args['<path>'], opts)
-    if path
-      puts "[+] Database updated #{path}"
-    else
-      puts '[+] Database already up to date'
+    if args['<path>']
+      opts = {}
+      opts[:sha256] = args['--force'] ? nil : PassStation::UPSTREAM_DATABASE[:HASH]
+      puts '[+] Updating database'
+      path = PassStation.download_upstream(args['<path>'], opts)
+      if path
+        puts "[+] Database updated #{path}"
+      else
+        puts '[+] Database already up to date'
+      end
+    elsif args['--check']
+      if PassStation.check_for_update
+        puts '[+] Update available'
+      else
+        puts '[+] No update available'
+      end
     end
   end
 rescue Docopt::Exit => e

@@ -3,6 +3,7 @@
 # Ruby internal
 require 'csv'
 require 'net/https'
+require 'tmpdir'
 
 # Manage upstream data source (download)
 class PassStation
@@ -21,6 +22,14 @@ class PassStation
     # @return [String] the saved file path.
     def download_upstream(destination_path, opts = {})
       download_file(UPSTREAM_DATABASE[:URL], destination_path, opts)
+    end
+
+    # Chek if an update is available
+    # @return [Boolean] +true+ if there is, +false+ else.
+    def check_for_update
+      file = download_file(UPSTREAM_DATABASE[:URL], Dir.mktmpdir)
+      # Same hash = no update
+      !check_hash(file, UPSTREAM_DATABASE[:HASH])
     end
 
     # Download a file.
@@ -79,6 +88,7 @@ class PassStation
       destination_file
     end
 
+    # https://github.com/lsegal/yard/issues/1372
     protected :download_file, :check_hash, :fetch_file, :write_file
   end
 end
