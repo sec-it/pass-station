@@ -23,6 +23,8 @@ module PassStation
     #   +DefaultCreds-Cheat-Sheet.csv+.
     attr_accessor :database_name
 
+    attr_reader :data
+
     # A new instance of Pass Station
     def initialize
       @storage_location = 'data/'
@@ -30,6 +32,7 @@ module PassStation
       @database_path = @storage_location + @database_name
       database_exists?
       csv_config
+      @data = nil
     end
 
     # Check if the password database exists
