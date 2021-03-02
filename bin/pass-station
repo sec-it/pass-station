@@ -21,7 +21,7 @@ doc = <<~DOCOPT
     pass-station --version
 
   List options: list all default credentials
-    -s <col>, --sort <col>  Sort by column: productvendor (default) | username | password
+    -s <col>, --sort <col>  Sort by column: productvendor | username | password [default: productvendor]
 
   Output options: can be used with list and search commands
     -o <format>, --output <format>  Output format: JSON, CSV, YAML, table, pretty-table [default: table]
@@ -61,7 +61,7 @@ begin
     end
   elsif args['list']
     ps = PassStation::DB.new
-    ps.parse
+    ps.parse(args['--sort'].to_sym)
     puts ps.output(args['--output'])
   end
 rescue Docopt::Exit => e

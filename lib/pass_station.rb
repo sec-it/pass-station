@@ -31,6 +31,7 @@ module PassStation
       @database_name = 'DefaultCreds-Cheat-Sheet.csv'
       @database_path = @storage_location + @database_name
       database_exists?
+      @config = {}
       csv_config
       @data = nil
     end
