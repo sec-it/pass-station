@@ -136,6 +136,8 @@ module PassStation
         end
 
         # Generate dividers
+        # @param colsizes [Hash] hash containing the column size for each column as returned by {colsizes_count}
+        # @return [String] divider line
         def dividers(colsizes)
           "+#{colsizes.map { |_, cs| '-' * (cs + 1) }.join('+')}+"
         end
