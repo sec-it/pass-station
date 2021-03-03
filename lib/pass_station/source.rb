@@ -10,7 +10,7 @@ module PassStation
   class DB
     UPSTREAM_DATABASE = {
       URL: 'https://raw.githubusercontent.com/ihebski/DefaultCreds-cheat-sheet/main/DefaultCreds-Cheat-Sheet.csv',
-      HASH: '37604fcbf1691f73c1080439e26fcc04f1b6f493128f1ba7a8120385750662ed'
+      HASH: 'de6a9f7e7ac94fbcd142ec5817efb71d3a0027076266c87ead5158a4960ec708'
     }.freeze
 
     class << self
@@ -20,7 +20,7 @@ module PassStation
       # @param opts [Hash] the optional downlaod parameters.
       # @option opts [String] :sha256 the SHA256 hash to check, if the file
       #   already exist and the hash matches then the download will be skipped.
-      # @return [String] the saved file path.
+      # @return [String|nil] the saved file path.
       def download_upstream(destination_path, opts = {})
         download_file(UPSTREAM_DATABASE[:URL], destination_path, opts)
       end
