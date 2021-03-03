@@ -26,7 +26,7 @@ doc = <<~DOCOPT
   Output options: can be used with list and search commands
     -o <format>, --output <format>  Output format: JSON, CSV, YAML, table, pretty-table [default: table]
 
-  Update options: update the password database
+  Update options: update the password database (replace Pass Station DB with upstream DB, use with care)
     -f, --force   Bypass hash checking
     -c, --check   Check for possible update
 
