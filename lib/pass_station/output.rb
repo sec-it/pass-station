@@ -14,7 +14,7 @@ module PassStation
     # Output the data in the chosen format
     # @param formatter [String] Engine to use to format the data: +table+, +'pretty-table'+, +JSON+, +CSV+, +YAML+
     # @param data [CSV::Table]
-    # @return [Table] formatted output
+    # @return [Array<String>] formatted output
     def output(formatter, data)
       # Convert string to class
       Object.const_get("PassStation::Output::#{normalize(formatter)}").format(data)
@@ -22,7 +22,7 @@ module PassStation
 
     # Output the data in the chosen format (list command)
     # @param formatter [String] Engine to use to format the data: +table+, +'pretty-table'+, +JSON+, +CSV+, +YAML+
-    # @return [Table] formatted output
+    # @return [Array<String>] formatted output
     def output_list(formatter)
       data_nil?
       output(formatter, @data)
@@ -30,17 +30,25 @@ module PassStation
 
     # Output the data in the chosen format (search command)
     # @param formatter [String] Engine to use to format the data: +table+, +'pretty-table'+, +JSON+, +CSV+, +YAML+
-    # @param highlight [String] term to highlight
-    # @return [Table] formatted output
-    def output_search(formatter, highlight = '')
+    # @return [Array<String>] formatted output
+    def output_search(formatter)
       return '[-] No result' if @search_result.empty?
 
-      out = output(formatter, @search_result)
-      highlight_found(highlight, out)
+      output(formatter, @search_result)
     end
 
-    def highlight_found(term, text)
-      text.map { |x| x.gsub(/#{term}/i) { |s| Paint[s, :red] } }
+    # Highlight (colorize) a searched term in the input
+    # When used with the search command, it will ignore in which column the
+    # search was made, and will instead colorize in every columns.
+    # @param term [String] the searched term
+    # @param text [String] the output in which the colorization must be made
+    # @param sensitive [Boolean] case sensitive or not
+    # @return [Array<String>] colorized output
+    def highlight_found(term, text, sensitive)
+      text.map do |x|
+        rgxp = build_regexp(term, sensitive: sensitive)
+        x.gsub(rgxp) { |s| Paint[s, :red] }
+      end
     end
 
     # Raise an error is data attribute is nil
@@ -56,7 +64,7 @@ module PassStation
       formatter.split('-').map(&:capitalize).join
     end
 
-    protected :normalize, :data_nil?, :highlight_found
+    protected :normalize, :data_nil?
   end
 
   # Output handling module containing all formatter engines
@@ -145,7 +153,7 @@ module PassStation
     class PrettyTable < Table
       class << self
         # Format the +CSV::Table+ into a simple table with justified columns
-        # @param table [CSV::Table|Array<Array>] a +CSV::Table+ or any 2D array
+        # @param table [CSV::Table] a +CSV::Table+
         # @return [Array<String>] the formatted table ready to be printed
         def format(table)
           out = []
