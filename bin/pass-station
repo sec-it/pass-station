@@ -71,7 +71,7 @@ begin
     ps = PassStation::DB.new
     ps.parse(args['--sort'].to_sym)
     ps.search(args['<term>'], args['--field'].to_sym, sensitive: args['--sensitive'])
-    puts ps.output_search(args['--output'])
+    puts ps.output_search(args['--output'], args['<term>'])
   end
 rescue Docopt::Exit => e
   puts e.message

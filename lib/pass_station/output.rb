@@ -4,6 +4,8 @@
 require 'csv'
 require 'json'
 require 'yaml'
+# External dependencies
+require 'paint'
 
 # Pass Station module
 module PassStation
@@ -28,11 +30,17 @@ module PassStation
 
     # Output the data in the chosen format (search command)
     # @param formatter [String] Engine to use to format the data: +table+, +'pretty-table'+, +JSON+, +CSV+, +YAML+
+    # @param highlight [String] term to highlight
     # @return [Table] formatted output
-    def output_search(formatter)
+    def output_search(formatter, highlight = '')
       return '[-] No result' if @search_result.empty?
 
-      output(formatter, @search_result)
+      out = output(formatter, @search_result)
+      highlight_found(highlight, out)
+    end
+
+    def highlight_found(term, text)
+      text.map { |x| x.gsub(/#{term}/i) { |s| Paint[s, :red] } }
     end
 
     # Raise an error is data attribute is nil
@@ -48,7 +56,7 @@ module PassStation
       formatter.split('-').map(&:capitalize).join
     end
 
-    protected :normalize, :data_nil?
+    protected :normalize, :data_nil?, :highlight_found
   end
 
   # Output handling module containing all formatter engines
