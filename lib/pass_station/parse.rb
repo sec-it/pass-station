@@ -23,8 +23,8 @@ module PassStation
 
     # Parse, sort and sanitize the password database
     # @param sort [Symbol] column name to sort by: +:productvendor+, +:username+, +:password+
-    # @return [CSV::Table] able of +CSV::Row+, eacho row contains three
-    #   attributes: :productvendor, :username, :password.
+    # @return [CSV::Table] table of +CSV::Row+, each row contains three
+    #   attributes: :productvendor, :username, :password
     def parse(sort = :productvendor)
       @data = CSV.table(@database_path, @config).sort_by do |s|
         s[sort].downcase

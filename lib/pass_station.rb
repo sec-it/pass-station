@@ -3,6 +3,7 @@
 # Project internal
 require 'pass_station/source'
 require 'pass_station/parse'
+require 'pass_station/search'
 require 'pass_station/version'
 
 # Pass Station module
@@ -36,6 +37,7 @@ module PassStation
       @config = {}
       csv_config
       @data = nil
+      @search_result = []
     end
 
     # Check if the password database exists
