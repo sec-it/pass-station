@@ -30,18 +30,14 @@ module PassStation
     # @param formatter [String] Engine to use to format the data: +table+, +'pretty-table'+, +JSON+, +CSV+, +YAML+
     # @return [Table] formatted output
     def output_search(formatter)
-      search_result_empty?
+      return '[-] No result' if @search_result.empty?
+
       output(formatter, @search_result)
     end
 
     # Raise an error is data attribute is nil
     def data_nil?
       raise 'You must use the parse method to polutate the data attribute first' if @data.nil?
-    end
-
-    # Raise an error is data search_result is empty
-    def search_result_empty?
-      raise 'You must use the sarch method to polutate the search_result attribute first' if @search_result.empty?
     end
 
     # Normalize string to be class name compatible
