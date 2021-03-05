@@ -86,9 +86,23 @@ module PassStation
         # @param table [CSV::Table]
         # @return [Hash] keys are columns name, values are columns size
         def colsizes_count(table)
-          table.first.to_h.keys.each_with_object({}) do |c, h|
+          colsizes = table.first.to_h.keys.each_with_object({}) do |c, h|
             h[c] = colsize_count(table, c)
           end
+          correct_min_colsizes(colsizes)
+        end
+
+        # Correct colsizes to be at least of the size of the headers (case when
+        # values are shorter than headers and breaks the table display)
+        # @param colsizes [Hash] hash containing the column size for each column as returned by {colsizes_count}
+        # @return [Hash] fixed colsizes, keys are columns name, values are columns size
+        def correct_min_colsizes(colsizes)
+          min_colsizes = {
+            productvendor: 14,
+            username: 9,
+            password: 9
+          }
+          min_colsizes.each_with_object({}) { |(k, v), h| h[k] = [v, colsizes[k]].max }
         end
 
         # Left justify an element of the column
@@ -119,7 +133,7 @@ module PassStation
           colsizes.map { |k, v| k.to_s.ljust(v) }.join.to_s
         end
 
-        protected :colsize_count, :colsizes_count, :justify, :justify_row, :headers
+        protected :colsize_count, :colsizes_count, :justify, :justify_row, :headers, :correct_min_colsizes
       end
     end
 
