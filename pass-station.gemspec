@@ -7,11 +7,11 @@ Gem::Specification.new do |s|
   s.name          = 'pass-station'
   s.version       = Version::VERSION
   s.platform      = Gem::Platform::RUBY
-  s.summary       = 'xxx'
-  s.description   = 'xxx'
+  s.summary       = 'CLI & library to search for default credentials among thousands of Products / Vendors'
+  s.description   = 'CLI & library to search for default credentials among thousands of Products / Vendors'
   s.authors       = ['Alexandre ZANNI']
   s.email         = 'alexandre.zanni@engineer.com'
-  s.homepage      = 'https://example.org'
+  s.homepage      = 'https://sec-it.github.io/pass-station/'
   s.license       = 'MIT'
 
   s.files         = Dir['bin/*'] + Dir['lib/**/*.rb'] + Dir['data/*.csv']
@@ -24,8 +24,8 @@ Gem::Specification.new do |s|
     'yard.run'          => 'yard',
     'bug_tracker_uri'   => 'https://github.com/sec-it/pass-station/issues',
     'changelog_uri'     => 'https://github.com/sec-it/pass-station/blob/master/docs/CHANGELOG.md',
-    'documentation_uri' => 'https://example.org',
-    'homepage_uri'      => 'https://example.org',
+    'documentation_uri' => 'https://sec-it.github.io/pass-station/yard/',
+    'homepage_uri'      => 'https://sec-it.github.io/pass-station/',
     'source_code_uri'   => 'https://github.com/sec-it/pass-station/'
   }
 

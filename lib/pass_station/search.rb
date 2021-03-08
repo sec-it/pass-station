@@ -60,6 +60,11 @@ module PassStation
       end
     end
 
-    protected :build_regexp, :prepare_search, :column_selector
+    # Raise an error is data attribute is nil
+    def data_nil?
+      raise 'You must use the parse method to polutate the data attribute first' if @data.nil?
+    end
+
+    protected :build_regexp, :prepare_search, :column_selector, :data_nil?
   end
 end

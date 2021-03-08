@@ -1,5 +1,18 @@
 # Why?
 
+[Pass Station][0] is using [DefaultCreds-cheat-sheet][3] password database
+because it's aggregating the entries of several default credentials lists:
+
+- [Changeme](https://github.com/ztgrace/changeme)
+- [Routersploit](https://github.com/threat9/routersploit)
+- [betterdefaultpasslist](https://github.com/govolution/betterdefaultpasslist)
+- [SecLists](https://github.com/danielmiessler/SecLists/tree/master/Passwords/Default-Credentials)
+- [ics-default-passwords](https://github.com/arnaudsoullie/ics-default-passwords)
+
+[Passhunt][1] was the only really tool existing out there to be the
+_searchploit for default credentials_ but it was relying on [an online service](https://cirt.net/passwords)
+and was lacking of features as well as being unmaintained.
+
 ## General
 
 | Tool                               | Maintained    | Color | CLI | Library | Lang |
@@ -53,3 +66,4 @@ Legend:
 [0]:https://github.com/sec-it/pass-station/
 [1]:https://github.com/Viralmaniar/Passhunt
 [2]:https://github.com/ihebski/DefaultCreds-cheat-sheet/blob/main/creds
+[3]:https://github.com/ihebski/DefaultCreds-cheat-sheet

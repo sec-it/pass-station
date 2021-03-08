@@ -3,6 +3,7 @@
   - [Quick start](pages/quick-start.md)
   - [Installation](pages/install.md)
   - [Usage](pages/usage.md)
+  - [Examples](pages/examples.md)
   - [Demo](pages/demo.md)
 
 - Guide

@@ -51,11 +51,6 @@ module PassStation
       end
     end
 
-    # Raise an error is data attribute is nil
-    def data_nil?
-      raise 'You must use the parse method to polutate the data attribute first' if @data.nil?
-    end
-
     # Normalize string to be class name compatible
     # Join splitted words and capitalize
     # @param formatter [String] formatter name
@@ -64,7 +59,7 @@ module PassStation
       formatter.split('-').map(&:capitalize).join
     end
 
-    protected :normalize, :data_nil?
+    protected :normalize
   end
 
   # Output handling module containing all formatter engines
