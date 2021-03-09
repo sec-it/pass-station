@@ -15,7 +15,7 @@
 
 **CLI**
 
-ASCIINEMA HERE
+[![asciicast](https://asciinema.org/a/397713.svg)](https://asciinema.org/a/397713)
 
 **Library**
 
@@ -46,7 +46,7 @@ Made by Alexandre ZANNI ([@noraj](https://pwn.by/noraj/)), pentester at [SEC-IT]
 ## TODO list / Roadmap:
 
 - [ ] CSV, JSON, YAML output formatter
-- [ ] Asciinema demo
+- [x] Asciinema demo
 - [ ] publish on rubygems
 - [ ] publish on BA & pentoo
 - [x] enable GH pages
