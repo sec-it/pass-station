@@ -49,6 +49,7 @@ Made by Alexandre ZANNI ([@noraj](https://pwn.by/noraj/)), pentester at [SEC-IT]
 - [ ] Asciinema demo
 - [ ] publish on rubygems
 - [ ] publish on BA & pentoo
-- [ ] enable GH pages
+- [x] enable GH pages
 - [ ] release version 1.0.0
 - [ ] Rawsec inventory
+- [ ] write tests
