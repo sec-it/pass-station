@@ -1,6 +1,9 @@
 AllCops:
   TargetRubyVersion: 2.4
   NewCops: enable
+  Exclude:
+    - 'test/*.rb'
+  SuggestExtensions: false
 Layout/HashAlignment:
   Exclude:
     - '*.gemspec'

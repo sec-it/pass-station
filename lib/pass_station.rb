@@ -15,8 +15,6 @@ module PassStation
   class DB
     # Get / set storage location, where will be stored the password database.
     # @return [String] database storage location. Default to +data/+.
-    # @example
-    #   PassStation.storage_location = '/srv/downloads/'
     attr_accessor :storage_location
 
     # Get / set the password database name
