@@ -59,7 +59,7 @@ Legend:
 
 | Tool                          | Package | Tests | Code Doc | User Doc | CI/CD | Lint rules |
 | ----------------------------- | ------- | ----- | -------- | -------- | ----- | ---------- |
-| [Pass Station][0]             | ✅       | ✅     | ✅        | ✅        | ❌     | ✅          |
+| [Pass Station][0]             | ✅       | ✅     | ✅        | ✅        | ✅     | ✅          |
 | [Passhunt][1]                 | ❌       | ❌     | ❌        | ❌        | ❌     | ❌          |
 | [DefaultCreds-cheat-sheet][2] | ❌       | ❌     | ❌        | ❌        | ❌     | ❌          |
 
