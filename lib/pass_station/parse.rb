@@ -26,7 +26,7 @@ module PassStation
     # @return [CSV::Table] table of +CSV::Row+, each row contains three
     #   attributes: :productvendor, :username, :password
     def parse(sort = :productvendor)
-      @data = CSV.table(@database_path, @config).sort_by do |s|
+      @data = CSV.table(@database_path, **@config).sort_by do |s|
         s[sort].downcase
       end
     end
