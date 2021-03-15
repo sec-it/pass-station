@@ -200,5 +200,29 @@ module PassStation
         protected :dividers, :headers, :justify_row, :justify
       end
     end
+
+    class Csv
+      class << self
+        def format(table)
+          CSV::Table.new(table).to_csv.split("\n")
+        end
+      end
+    end
+
+    class Json
+      class << self
+        def format(table)
+          [table.map(&:to_h).to_json]
+        end
+      end
+    end
+
+    class Yaml
+      class << self
+        def format(table)
+          [table.map(&:to_h).to_yaml]
+        end
+      end
+    end
   end
 end

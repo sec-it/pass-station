@@ -42,8 +42,3 @@ Homepage / Documentation: https://sec-it.github.io/pass-station/
 ## Author
 
 Made by Alexandre ZANNI ([@noraj](https://pwn.by/noraj/)), pentester at [SEC-IT](https://sec-it.fr).
-
-## TODO list / Roadmap:
-
-- [ ] CSV, JSON, YAML output formatter
-- [ ] publish on BA & pentoo
