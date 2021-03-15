@@ -13,7 +13,7 @@ module PassStation
   class DB
     # Output the data in the chosen format
     # @param formatter [String] Engine to use to format the data: +table+, +'pretty-table'+, +JSON+, +CSV+, +YAML+
-    # @param data [CSV::Table]
+    # @param data [Array<CSV::Row>]
     # @return [Array<String>] formatted output
     def output(formatter, data)
       # Convert string to class
@@ -68,8 +68,8 @@ module PassStation
     # Simple table formatter
     class Table
       class << self
-        # Format the +CSV::Table+ into a simple table with justified columns
-        # @param table [CSV::Table] a +CSV::Table+
+        # Format the +Array<CSV::Row>+ into a simple table with justified columns
+        # @param table [Array<CSV::Row>] an +Array<CSV::Row>+
         # @return [Array<String>] the formatted table ready to be printed
         def format(table)
           out = []
@@ -82,7 +82,7 @@ module PassStation
         end
 
         # Calculate column size (max item size)
-        # @param table [CSV::Table]
+        # @param table [Array<CSV::Row>]
         # @param column [Symbol] the symbol of the column
         # @return [Integer] the column size
         def colsize_count(table, column)
@@ -90,7 +90,7 @@ module PassStation
         end
 
         # Calculate the size of all columns (max item size)
-        # @param table [CSV::Table]
+        # @param table [Array<CSV::Row>]
         # @return [Hash] keys are columns name, values are columns size
         def colsizes_count(table)
           colsizes = table.first.to_h.keys.each_with_object({}) do |c, h|
@@ -147,8 +147,8 @@ module PassStation
     # Pretty table with ASCII borders formatter
     class PrettyTable < Table
       class << self
-        # Format the +CSV::Table+ into a simple table with justified columns
-        # @param table [CSV::Table] a +CSV::Table+
+        # Format the +Array<CSV::Row>+ into a simple table with justified columns
+        # @param table [Array<CSV::Row>] an +Array<CSV::Row>+
         # @return [Array<String>] the formatted table ready to be printed
         def format(table)
           out = []
@@ -201,24 +201,40 @@ module PassStation
       end
     end
 
+    # CSV formatter
     class Csv
       class << self
+        # Format the +Array<CSV::Row>+ into a CSV
+        # @param table [Array<CSV::Row>] an +Array<CSV::Row>+
+        # @return [Array<String>] the formatted CSV ready to be printed
         def format(table)
           CSV::Table.new(table).to_csv.split("\n")
         end
       end
     end
 
+    # JSON formatter
     class Json
       class << self
+        # Format the +Array<CSV::Row>+ into JSON
+        # @param table [Array<CSV::Row>] an +Array<CSV::Row>+
+        # @return [Array<String>] the formatted JSON ready to be printed (only
+        #   one element on the array, keep an array for compatibility with
+        #   {highlight_found} and homogeneity with other formatters)
         def format(table)
           [table.map(&:to_h).to_json]
         end
       end
     end
 
+    # YAML formatter
     class Yaml
       class << self
+        # Format the +Array<CSV::Row>+ into YAML
+        # @param table [Array<CSV::Row>] an +Array<CSV::Row>+
+        # @return [Array<String>] the formatted YAML ready to be printed (only
+        #   one element on the array, keep an array for compatibility with
+        #   {highlight_found} and homogeneity with other formatters)
         def format(table)
           [table.map(&:to_h).to_yaml]
         end

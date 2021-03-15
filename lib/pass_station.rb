@@ -22,8 +22,8 @@ module PassStation
     #   +DefaultCreds-Cheat-Sheet.csv+.
     attr_accessor :database_name
 
-    # Get the password database in +CSV::Table+ format
-    # @return [CSV::Table] pasword database
+    # Get the password database in +Array<CSV::Row>+ format
+    # @return [Array<CSV::Row>] pasword database
     attr_reader :data
 
     # A new instance of Pass Station

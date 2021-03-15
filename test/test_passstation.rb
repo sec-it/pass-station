@@ -94,4 +94,19 @@ class PassStattionTest < Minitest::Test
     assert_instance_of(Array, PassStation::Output::PrettyTable.format(@ps.data))
     assert_instance_of(String, PassStation::Output::PrettyTable.format(@ps.data)[0])
   end
+
+  def test_Output_Csv_format
+    assert_instance_of(Array, PassStation::Output::Csv.format(@ps.data))
+    assert_instance_of(String, PassStation::Output::Csv.format(@ps.data)[0])
+  end
+
+  def test_Output_Json_format
+    assert_instance_of(Array, PassStation::Output::Json.format(@ps.data))
+    assert_instance_of(String, PassStation::Output::Json.format(@ps.data)[0])
+  end
+
+  def test_Output_Yaml_format
+    assert_instance_of(Array, PassStation::Output::Yaml.format(@ps.data))
+    assert_instance_of(String, PassStation::Output::Yaml.format(@ps.data)[0])
+  end
 end

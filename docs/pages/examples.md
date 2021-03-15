@@ -93,3 +93,109 @@ Xerox WorkCentre 5020/DN (printer)                   11111                      
 IBM                                                  11111111                   11111111
 ...
 ```
+
+Search default credentials for Dell products outputting in YAML:
+
+```plaintext
+$ pass-station search dell --output yaml
+---
+- :productvendor: Dell
+  :username: admin
+  :password: admin
+- :productvendor: Dell
+  :username: Admin
+  :password: "<blank>"
+- :productvendor: Dell
+  :username: Administrator
+  :password: storageserver
+- :productvendor: Dell
+  :username: admin
+  :password: password
+- :productvendor: Dell
+  :username: "<blank>"
+  :password: 1RRWTTOOI
+- :productvendor: Dell
+  :username: "<blank>"
+  :password: admin
+- :productvendor: Dell
+  :username: "<blank>"
+  :password: Dell
+- :productvendor: Dell
+  :username: "<blank>"
+  :password: Fireport
+- :productvendor: Dell
+  :username: "<blank>"
+  :password: nz0u4bbe
+- :productvendor: Dell
+  :username: rapport
+  :password: r@p8p0r+
+- :productvendor: Dell
+  :username: root
+  :password: calvin
+- :productvendor: Dell
+  :username: root
+  :password: wyse
+- :productvendor: Dell
+  :username: VNC
+  :password: winterm
+- :productvendor: DELL IDARC (web)
+  :username: root
+  :password: calvin
+- :productvendor: Dell iDRAC (web)
+  :username: root
+  :password: calvin
+```
+
+Search default credentials for Draytek products outputting in JSON (with and without [jq][jq] formatting):
+
+```plaintext
+$ pass-station search Draytek --output json
+[{"productvendor":"Draytek","username":"admin","password":"admin"},{"productvendor":"Draytek","username":"admin","password":"<blank>"},{"productvendor":"Draytek","username":"draytek","password":"1234"},{"productvendor":"Draytek","username":"Draytek","password":"1234"},{"productvendor":"Draytek Corp","username":"admin","password":"<blank>"}]
+
+$ pass-station search Draytek --output json --no-color | jq
+[
+  {
+    "productvendor": "Draytek",
+    "username": "admin",
+    "password": "admin"
+  },
+  {
+    "productvendor": "Draytek",
+    "username": "admin",
+    "password": "<blank>"
+  },
+  {
+    "productvendor": "Draytek",
+    "username": "draytek",
+    "password": "1234"
+  },
+  {
+    "productvendor": "Draytek",
+    "username": "Draytek",
+    "password": "1234"
+  },
+  {
+    "productvendor": "Draytek Corp",
+    "username": "admin",
+    "password": "<blank>"
+  }
+]
+```
+
+[jq]:https://stedolan.github.io/jq/
+
+Search default credentials for Edimax products outputting in CSV:
+
+```plaintext
+$ pass-station search Edimax --output csv
+productvendor,username,password
+Edimax,admin,123
+Edimax,admin,1234
+Edimax,admin,<blank>
+Edimax,admin,epicrouter
+Edimax,admin,password
+Edimax,admin,su@psir
+Edimax,edimax,software01
+Edimax,guest,1234
+Edimax,guest,<blank>
+```

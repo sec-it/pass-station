@@ -8,7 +8,7 @@ module PassStation
     # @param term [String] the searched term
     # @param col [Symbol] the column to search in: :productvendor | :username | :password | :all (all columns)
     # @see build_regexp for +opts+ param description
-    # @return [CSV::Table] table of +CSV::Row+, each row contains three
+    # @return [Array<CSV::Row>] table of +CSV::Row+, each row contains three
     #   attributes: :productvendor, :username, :password
     def search(term, col, opts = {})
       r1 = prepare_search(term, opts)
