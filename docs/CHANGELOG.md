@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [1.2.0]
+
+- Fix database loading path issue [#1](https://github.com/sec-it/pass-station/issues/1)
+
 ## [1.1.0]
 
 - **Feature**: add CSV, JSON, YAML formatting

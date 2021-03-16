@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# Ruby internal
+require 'pathname'
 # Project internal
 require 'pass_station/source'
 require 'pass_station/parse'
@@ -30,12 +32,20 @@ module PassStation
     def initialize
       @storage_location = 'data/'
       @database_name = 'DefaultCreds-Cheat-Sheet.csv'
-      @database_path = @storage_location + @database_name
+      @database_path = absolute_db_path
       database_exists?
       @config = {}
       csv_config
       @data = nil
       @search_result = []
+    end
+
+    # Find the absolute path of the DB from its relative location
+    # @return [String] absolute filename of the DB
+    def absolute_db_path
+      pn = Pathname.new(__FILE__)
+      install_dir = pn.dirname.parent.to_s + Pathname::SEPARATOR_LIST
+      install_dir + @storage_location + @database_name
     end
 
     # Check if the password database exists
@@ -47,6 +57,6 @@ module PassStation
       exists
     end
 
-    protected :database_exists?
+    protected :database_exists?, :absolute_db_path
   end
 end
