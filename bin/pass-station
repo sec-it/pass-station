@@ -28,7 +28,7 @@ doc = <<~DOCOPT
 
   Search options:
     --field <col>   Search in column: productvendor | username | password | all [default: productvendor]
-    --sensitive     Sarch is case sensitive (case insensitive by default)
+    --sensitive     Search is case sensitive (case insensitive by default)
 
   Update options: update the password database (replace Pass Station DB with upstream DB, use with care)
     -f, --force   Bypass hash checking
