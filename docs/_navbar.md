@@ -1,3 +1,3 @@
 - [Home](/)
 - [Source](https://github.com/sec-it/pass-station)
-- [Library doc](/yard/)
+- [Library doc](https://sec-it.github.io/pass-station/yard/)
