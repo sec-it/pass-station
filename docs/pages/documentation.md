@@ -4,7 +4,7 @@
 
 See [Usage](pages/usage.md?id=cli).
 
-### Server locally
+### Serve locally
 
 ```plaintext
 $ npm i docsify-cli -g
