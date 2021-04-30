@@ -16,7 +16,7 @@ On new release don't forget to rebuild the library documentation:
 $ bundle exec yard doc
 ```
 
-An to be sure all tests pass!
+And to be sure all tests pass!
 
 ```plaintext
 $ rake
@@ -32,7 +32,7 @@ On new release don't forget to rebuild the library documentation:
 $ bundle exec yard doc
 ```
 
-An to be sure all tests pass!
+And to be sure all tests pass!
 
 ```plaintext
 $ rake
