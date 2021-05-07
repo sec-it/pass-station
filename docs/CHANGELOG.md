@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+## [1.2.1]
+
+- fix error when empty search result
+  - fix `output_search()` return value consistency
+
 ## [1.2.0]
 
 - Fix database loading path issue [#1](https://github.com/sec-it/pass-station/issues/1)
