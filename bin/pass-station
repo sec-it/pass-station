@@ -72,6 +72,7 @@ begin
     ps.parse(args['--sort'].to_sym)
     ps.search(args['<term>'], args['--field'].to_sym, sensitive: args['--sensitive'])
     output = ps.output_search(args['--output'])
+    puts '[-] No result' if output.empty?
     puts ps.highlight_found(args['<term>'], output, args['--sensitive'])
   end
 rescue Docopt::Exit => e

@@ -32,7 +32,7 @@ module PassStation
     # @param formatter [String] Engine to use to format the data: +table+, +'pretty-table'+, +JSON+, +CSV+, +YAML+
     # @return [Array<String>] formatted output
     def output_search(formatter)
-      return '[-] No result' if @search_result.empty?
+      return [] if @search_result.empty?
 
       output(formatter, @search_result)
     end
