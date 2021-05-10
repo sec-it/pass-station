@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [1.2.2]
+
+- Update database (new entries) to reflect [upstream](https://github.com/ihebski/DefaultCreds-cheat-sheet/pull/11/files)
+
 ## [1.2.1]
 
 - fix error when empty search result
